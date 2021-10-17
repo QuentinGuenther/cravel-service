@@ -1,10 +1,10 @@
 import { IResolvers } from '@graphql-tools/utils';
-import { Upc, QueryUpcArgs } from '../generated';
+import { Food, QueryFoodArgs } from '../generated';
 import fetch from 'cross-fetch';
 
-export const UpcResolvers: IResolvers = {
+export const FoodResolvers: IResolvers = {
   Query: {
-    async upc(_: void, args: QueryUpcArgs): Promise<Upc> {
+    async food(_: void, args: QueryFoodArgs): Promise<Food> {
       const url = 'https://api.nal.usda.gov/fdc/v1/foods/search?pageSize=2&query='
       const api_key = '2OZQjK5uKNNJzmdbeK4U2hcz6bPMde4ZNO7SmW4A'
 

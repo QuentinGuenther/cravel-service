@@ -1,7 +1,7 @@
 extend type Query {
-  upc(upc: String!): Upc!
+  food(upc: String!): Food!
 }
 
-type Upc {
+type Food {
   response: String!
 }
