@@ -1,7 +1,26 @@
 extend type Query {
-  food(upc: String!): Food!
+  food(food: String!): Food!
 }
 
 type Food {
-  response: String!
+  metaInfo: [MetaInfo!]
+  ingredientInfo: [IngredientInfo!]
+  nutrientInfo: [NutrientInfo!]
+}
+
+type MetaInfo {
+  description: String!
+  category: String!
+  brand: String!
+  upc: String!
+}
+
+type IngredientInfo {
+  ingredients: String!
+}
+
+type NutrientInfo {
+  nutrientName: String!
+  unitName: String!
+  value: Float!
 }

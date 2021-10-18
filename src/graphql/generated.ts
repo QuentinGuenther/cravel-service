@@ -15,7 +15,9 @@ export type Scalars = {
 
 export type Food = {
   __typename?: 'Food';
-  response: Scalars['String'];
+  ingredientInfo?: Maybe<Array<IngredientInfo>>;
+  metaInfo?: Maybe<Array<MetaInfo>>;
+  nutrientInfo?: Maybe<Array<NutrientInfo>>;
 };
 
 export type Greeting = {
@@ -23,9 +25,29 @@ export type Greeting = {
   response: Scalars['String'];
 };
 
+export type IngredientInfo = {
+  __typename?: 'IngredientInfo';
+  ingredients: Scalars['String'];
+};
+
+export type MetaInfo = {
+  __typename?: 'MetaInfo';
+  brand: Scalars['String'];
+  category: Scalars['String'];
+  description: Scalars['String'];
+  upc: Scalars['String'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   _empty?: Maybe<Scalars['String']>;
+};
+
+export type NutrientInfo = {
+  __typename?: 'NutrientInfo';
+  nutrientName: Scalars['String'];
+  unitName: Scalars['String'];
+  value: Scalars['Float'];
 };
 
 export type Query = {
@@ -37,7 +59,7 @@ export type Query = {
 
 
 export type QueryFoodArgs = {
-  upc: Scalars['String'];
+  food: Scalars['String'];
 };
 
 
@@ -115,9 +137,13 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
+  Float: ResolverTypeWrapper<Scalars['Float']>;
   Food: ResolverTypeWrapper<Food>;
   Greeting: ResolverTypeWrapper<Greeting>;
+  IngredientInfo: ResolverTypeWrapper<IngredientInfo>;
+  MetaInfo: ResolverTypeWrapper<MetaInfo>;
   Mutation: ResolverTypeWrapper<{}>;
+  NutrientInfo: ResolverTypeWrapper<NutrientInfo>;
   Query: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars['String']>;
 };
@@ -125,15 +151,21 @@ export type ResolversTypes = {
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
   Boolean: Scalars['Boolean'];
+  Float: Scalars['Float'];
   Food: Food;
   Greeting: Greeting;
+  IngredientInfo: IngredientInfo;
+  MetaInfo: MetaInfo;
   Mutation: {};
+  NutrientInfo: NutrientInfo;
   Query: {};
   String: Scalars['String'];
 };
 
 export type FoodResolvers<ContextType = any, ParentType extends ResolversParentTypes['Food'] = ResolversParentTypes['Food']> = {
-  response?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  ingredientInfo?: Resolver<Maybe<Array<ResolversTypes['IngredientInfo']>>, ParentType, ContextType>;
+  metaInfo?: Resolver<Maybe<Array<ResolversTypes['MetaInfo']>>, ParentType, ContextType>;
+  nutrientInfo?: Resolver<Maybe<Array<ResolversTypes['NutrientInfo']>>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -142,20 +174,43 @@ export type GreetingResolvers<ContextType = any, ParentType extends ResolversPar
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
+export type IngredientInfoResolvers<ContextType = any, ParentType extends ResolversParentTypes['IngredientInfo'] = ResolversParentTypes['IngredientInfo']> = {
+  ingredients?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type MetaInfoResolvers<ContextType = any, ParentType extends ResolversParentTypes['MetaInfo'] = ResolversParentTypes['MetaInfo']> = {
+  brand?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  category?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  description?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  upc?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   _empty?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
 };
 
+export type NutrientInfoResolvers<ContextType = any, ParentType extends ResolversParentTypes['NutrientInfo'] = ResolversParentTypes['NutrientInfo']> = {
+  nutrientName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  unitName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  value?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   _empty?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  food?: Resolver<ResolversTypes['Food'], ParentType, ContextType, RequireFields<QueryFoodArgs, 'upc'>>;
+  food?: Resolver<ResolversTypes['Food'], ParentType, ContextType, RequireFields<QueryFoodArgs, 'food'>>;
   helloWorld?: Resolver<ResolversTypes['Greeting'], ParentType, ContextType, RequireFields<QueryHelloWorldArgs, 'name'>>;
 };
 
 export type Resolvers<ContextType = any> = {
   Food?: FoodResolvers<ContextType>;
   Greeting?: GreetingResolvers<ContextType>;
+  IngredientInfo?: IngredientInfoResolvers<ContextType>;
+  MetaInfo?: MetaInfoResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
+  NutrientInfo?: NutrientInfoResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
 };
 
