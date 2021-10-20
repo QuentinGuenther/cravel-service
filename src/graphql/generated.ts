@@ -43,11 +43,16 @@ export type Mutation = {
   _empty?: Maybe<Scalars['String']>;
 };
 
-export type NutrientInfo = {
-  __typename?: 'NutrientInfo';
+export type Nutrient = {
+  __typename?: 'Nutrient';
   nutrientName: Scalars['String'];
   unitName: Scalars['String'];
   value: Scalars['Float'];
+};
+
+export type NutrientInfo = {
+  __typename?: 'NutrientInfo';
+  nutrients: Array<Nutrient>;
 };
 
 export type Query = {
@@ -143,6 +148,7 @@ export type ResolversTypes = {
   IngredientInfo: ResolverTypeWrapper<IngredientInfo>;
   MetaInfo: ResolverTypeWrapper<MetaInfo>;
   Mutation: ResolverTypeWrapper<{}>;
+  Nutrient: ResolverTypeWrapper<Nutrient>;
   NutrientInfo: ResolverTypeWrapper<NutrientInfo>;
   Query: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars['String']>;
@@ -157,6 +163,7 @@ export type ResolversParentTypes = {
   IngredientInfo: IngredientInfo;
   MetaInfo: MetaInfo;
   Mutation: {};
+  Nutrient: Nutrient;
   NutrientInfo: NutrientInfo;
   Query: {};
   String: Scalars['String'];
@@ -191,10 +198,15 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
   _empty?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
 };
 
-export type NutrientInfoResolvers<ContextType = any, ParentType extends ResolversParentTypes['NutrientInfo'] = ResolversParentTypes['NutrientInfo']> = {
+export type NutrientResolvers<ContextType = any, ParentType extends ResolversParentTypes['Nutrient'] = ResolversParentTypes['Nutrient']> = {
   nutrientName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   unitName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   value?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type NutrientInfoResolvers<ContextType = any, ParentType extends ResolversParentTypes['NutrientInfo'] = ResolversParentTypes['NutrientInfo']> = {
+  nutrients?: Resolver<Array<ResolversTypes['Nutrient']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -210,6 +222,7 @@ export type Resolvers<ContextType = any> = {
   IngredientInfo?: IngredientInfoResolvers<ContextType>;
   MetaInfo?: MetaInfoResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
+  Nutrient?: NutrientResolvers<ContextType>;
   NutrientInfo?: NutrientInfoResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
 };

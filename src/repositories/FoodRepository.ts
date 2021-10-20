@@ -22,4 +22,27 @@ export default class FoodRepository {
       }]
     });
   }
+
+  async fetchNutrientInfo() {
+    const response = await fetch(URL + 'pizza' + '&api_key=' + API_KEY);
+    return await response.json().then((data) => {
+      const nutrients = data.foods[0].foodNutrients;
+      const validKeys = [
+        'nutrientName',
+        'unitName',
+        'value'
+      ]
+
+      for(var i = 0; i < Object.keys(nutrients).length; ++i) {
+        for(var key in nutrients[i]) {
+          if(!validKeys.includes(key))
+            delete nutrients[i][key];
+        }  
+      }
+
+      return [{
+        nutrients
+      }];
+    })
+  }
 }
