@@ -1,0 +1,31 @@
+extend type Query {
+  food(query: String!): Food!
+}
+
+type Food {
+  metaInfo: [MetaInfo]
+  ingredientInfo: [IngredientInfo]
+  nutrientInfo: [NutrientInfo]
+}
+
+type MetaInfo {
+  description: String
+  category: String
+  brand: String
+  owner: String
+  upc: String
+}
+
+type IngredientInfo {
+  ingredients: String
+}
+
+type NutrientInfo {
+  nutrients: [Nutrient]
+}
+
+type Nutrient {
+  nutrientName: String
+  unitName: String
+  value: Float
+}

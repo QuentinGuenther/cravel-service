@@ -3,6 +3,7 @@ import http from 'http';
 import { ApolloServer, ExpressContext } from 'apollo-server-express';
 import schema from './graphql/schemasMap';
 import { ApolloServerPluginDrainHttpServer, Config } from 'apollo-server-core';
+require('dotenv').config();
 
 const PORT = 3000;
 
