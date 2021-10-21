@@ -9,7 +9,7 @@ export default class FoodRepository {
   }
 
   async fetchMetaInfo() {
-    const response = await fetch(URL + this.query + '&api_key=' + API_KEY);
+    const response = await fetch(URL + this.query + '&api_key=' + process.env.API_KEY);
     return await response.json().then((data) => {
       return [{
         description: data.foods[0].description,
@@ -22,7 +22,7 @@ export default class FoodRepository {
   }
 
   async fetchIngredientInfo() {
-    const response = await fetch(URL + this.query + '&api_key=' + API_KEY);
+    const response = await fetch(URL + this.query + '&api_key=' + process.env.API_KEY);
     return await response.json().then((data) => {
       return [{
         ingredients: data.foods[0].ingredients,
@@ -31,7 +31,7 @@ export default class FoodRepository {
   }
 
   async fetchNutrientInfo() {
-    const response = await fetch(URL + this.query + '&api_key=' + API_KEY);
+    const response = await fetch(URL + this.query + '&api_key=' + process.env.API_KEY);
     return await response.json().then((data) => {
       const nutrients = data.foods[0].foodNutrients;
       const validKeys = [
