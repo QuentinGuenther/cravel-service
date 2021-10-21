@@ -3,28 +3,29 @@ extend type Query {
 }
 
 type Food {
-  metaInfo: [MetaInfo!]
-  ingredientInfo: [IngredientInfo!]
-  nutrientInfo: [NutrientInfo!]
+  metaInfo: [MetaInfo]
+  ingredientInfo: [IngredientInfo]
+  nutrientInfo: [NutrientInfo]
 }
 
 type MetaInfo {
-  description: String!
-  category: String!
-  brand: String!
-  upc: String!
+  description: String
+  category: String
+  brand: String
+  owner: String
+  upc: String
 }
 
 type IngredientInfo {
-  ingredients: String!
+  ingredients: String
 }
 
 type NutrientInfo {
-  nutrients: [Nutrient!]!
+  nutrients: [Nutrient]
 }
 
 type Nutrient {
-  nutrientName: String!
-  unitName: String!
-  value: Float!
+  nutrientName: String
+  unitName: String
+  value: Float
 }
