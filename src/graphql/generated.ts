@@ -65,7 +65,7 @@ export type Query = {
 
 
 export type QueryFoodArgs = {
-  food: Scalars['String'];
+  query: Scalars['String'];
 };
 
 
@@ -214,7 +214,7 @@ export type NutrientInfoResolvers<ContextType = any, ParentType extends Resolver
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   _empty?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  food?: Resolver<ResolversTypes['Food'], ParentType, ContextType, RequireFields<QueryFoodArgs, 'food'>>;
+  food?: Resolver<ResolversTypes['Food'], ParentType, ContextType, RequireFields<QueryFoodArgs, 'query'>>;
   helloWorld?: Resolver<ResolversTypes['Greeting'], ParentType, ContextType, RequireFields<QueryHelloWorldArgs, 'name'>>;
 };
 
